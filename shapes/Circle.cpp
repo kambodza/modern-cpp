@@ -1,27 +1,47 @@
 #include "Circle.hpp"
 #include <math.h>
 #include <iostream>
-#include <corecrt_math_defines.h>
+#include <numbers>
+
+
+std::ostream& operator<<(std::ostream & os, Color c){
+    if(c == Color::White){
+        os << "White";
+    }
+    else if(c == Color::Black){
+        os << "Black";
+    }
+    else {
+        os << "Blue";
+    }
+
+    return os;
+}
 
 Circle::Circle(double r)
     : r_(r)
 {}
 
-static_assert(M_PI != 3.14, "M_PI is not precise");
+Circle::Circle(const Circle& other) : Shape(other)
+{
+    r_ = other.getRadius();
+}
+
+static_assert(std::numbers::pi != 3.14, "M_PI is not precise");
 
 double Circle::getPi() const {
-    return M_PI;
+    return std::numbers::pi;
 }
 
 double Circle::getArea() const
 {
-    static_assert(M_PI != 3.14, "M_PI is not properly defined!\n");
+    static_assert(std::numbers::pi != 3.14, "M_PI is not properly defined!\n");
     return getPi() * r_ * r_;
 }
 
 double Circle::getPerimeter() const
 {
-    static_assert(M_PI != 3.14, "M_PI is not properly defined!\n");
+    static_assert(std::numbers::pi != 3.14, "M_PI is not properly defined!\n");
     return 2 * getPi() * r_;
 }
 

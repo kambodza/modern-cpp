@@ -7,12 +7,12 @@ class Rectangle : public Shape
 public:
     Rectangle() = delete;
     Rectangle(double x, double y);
-    Rectangle(const Rectangle & other) = default;
+    Rectangle(const Rectangle & other);
 
-    double getArea() const override;
-    double getPerimeter() const override;
+    double getArea() const noexcept override;
+    double getPerimeter() const noexcept override;
     void print() const override;
-    
+
     virtual double getX() const final;
     double getY() const;
 

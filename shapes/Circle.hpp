@@ -1,13 +1,17 @@
 #pragma once
 
 #include "Shape.hpp"
+#include <iostream>
 
-class Circle final : public Shape
+std::ostream& operator<<(std::ostream & os, Color c);
+
+class alignas(128) Circle final : public Shape
 {
 public:
+    using Shape::Shape;
     Circle() = delete;
     Circle(double r);
-    Circle(const Circle & other) = default;
+    Circle(const Circle & other);
 
     double getPi() const;
     double getArea() const override;
